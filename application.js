@@ -335,7 +335,7 @@ function refreshSessionStatus(){
                 // TODO make this block set this variable to the cognito users cognitoSubNumber
                 SignInStatus.cognitoSubNumber = null;
                 sessionStorage.setItem("storedSession", SignInStatus);
-                console.log("Current user session is valid.");
+                console.log("Current user session is valid." + session.getUsername());
                 return;
             }
         });
