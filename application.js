@@ -31,7 +31,8 @@ var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poo
 var SignInStatus = {
     currentCognitoUser: userPool.getCurrentUser(),
     lastIdentityToken: null,
-    lastAccessToken: null
+    lastAccessToken: null,
+    cognitoSubNumber: null
 };
 
 (function() {
@@ -331,6 +332,8 @@ function refreshSessionStatus(){
             }else{
                 SignInStatus.lastIdentityToken = session.getIdToken().getJwtToken();       
                 SignInStatus.lastAccessToken = session.getAccessToken().getJwtToken();
+                // TODO make this block set this variable to the cognito users cognitoSubNumber
+                SignInStatus.cognitoSubNumber = null;
                 sessionStorage.setItem("storedSession", SignInStatus);
                 console.log("Current user session is valid.");
                 return;
