@@ -237,19 +237,19 @@
                     <p class="lead">The idea is you shouldn't be able to get to this page (or at least stay here) without a valid cognito session.<br>So if you're here congrats!</p>
 
 
-                    <form class="form-getCasesAll" method="GET" action="{URL_OF_REST}/cases/all">
+                    <form class="form-getCasesAll" method="GET" action="">
                       <h2 class="">Show All Cases</h2>
                       <label class="checkbox"></label>
                       <button class="btn btn-lg btn-primary btn-block" type="submit">Show All Cases</button>
                     </form>
 
-                    <form class="form-getCasesByCognitoSubNumber" method="GET" action="{URL_OF_REST}/cases/{cognitoSubNumber}">
+                    <form class="form-getCasesByCognitoSubNumber" method="GET" id="clinicCaseAPI" action="">
                       <h2 class="">Show All Cases from Current Clinic</h2>
                       <label class="checkbox"></label>
                       <button class="btn btn-lg btn-primary btn-block" type="submit">Show All Cases from our Clinic</button>
                     </form>
 
-                    <form class="form-getCasesByCaseId" method="GET" action="{URL_OF_REST}/cases/{cognitoSubNumber}/{caseId}">
+                    <form class="form-getCasesByCaseId" method="GET" id="caseAPI" action="">
                       <h2 class="">Get a Case by Id</h2>
                       <label class="checkbox"></label>
                       <button class="btn btn-lg btn-primary btn-block" type="submit">Get a Case by Id</button>
@@ -257,7 +257,7 @@
 
 
 
-                    <form class="form-postNewCase" method="POST" action="{URL_OF_REST}/cases/{cognitoSubNumber}">
+                    <form class="form-postNewCase" method="POST" id="clinicCaseAPI" action="">
                       <h2 class="">Submit a new Case</h2>
                       <!-- TODO Check the script at the bottom of this page is populating the below "caseId" value -->
                       <input class="form-control" type="hidden" id="caseIdUuid" required name="caseId" value="">
@@ -280,7 +280,7 @@
 
 
                     <!-- Dynamo DB's puts are indempotent so to "edit" and entry, you simply write over the top with an identical "cognitoSubNumber" and "caseId" -->
-                    <form class="form-editCase" method="POST" action="{URL_OF_REST}/cases/{cognitoSubNumber}/{caseId}">
+                    <form class="form-editCase" method="POST" id="caseAPI" action="">
                       <h2 class="">Edit a Case</h2>
                       <input class="form-control" type="hidden" id="cognitoSubNumber" required name="cognitoSubNumber" value="">
                       <input class="form-control" type="text" required name="caseId" placeholder="Case ID">
@@ -299,7 +299,7 @@
                       <button class="btn btn-lg btn-primary btn-block" type="submit">Edit a Case</button>
                     </form>
 
-                    <form class="form-deleteCase" method="DELETE" action="{URL_OF_REST}/cases/{cognitoSubNumber}/{caseId}">
+                    <form class="form-deleteCase" method="DELETE" id="caseAPI" action="">
                       <h2 class="">Delete a Case</h2>
                       <label class="checkbox"></label>
                       <button class="btn btn-lg btn-primary btn-block" type="submit">Delete a Case</button>
@@ -309,7 +309,7 @@
 
                     <!-- Submitting this form will edit the attributes of the "Accounts" table-->
                     <!-- TODO make this call edit the cognito user account as well (will need lambda) -->
-                    <form class="form-editAnAccount" method="POST" action="{URL_OF_REST}/accounts/{cognitoSubNumber}/">
+                    <form class="form-editAnAccount" method="POST" id="accountAPI" action="">
                       <h2 class="">Edit an Account</h2>
                       <input class="form-control" type="hidden"  id="cognitoSubNumber" required name="cognitoSubNumber" value="">
                       <input class="form-control" type="text" required name="postcode" placeholder="Postcode">
@@ -322,7 +322,7 @@
                       <button class="btn btn-lg btn-primary btn-block" type="submit">Edit an Account</button>
                     </form>
 
-                    <form class="form-deleteAccount" method="DELETE" action="{URL_OF_REST}/accounts/{cognitoSubNumber}">
+                    <form class="form-deleteAccount" method="DELETE" id="accountAPI" action="">
                       <h2 class="">Delete an Account</h2>
                       <label class="checkbox"></label>
                       <button class="btn btn-lg btn-primary btn-block" type="submit">Delete an Account</button>
@@ -342,6 +342,13 @@
         <script src="http://wzrd.in/standalone/uuid%2Fv1@latest"></script>
         <script src="application.js"></script>
         <script src="ui.js"></script>
-        <script type="text/javascript"> document.getElementById("caseIdUuid").value = uuidv1(); document.getElementById("cognitoSubNumber").value = SignInStatus.currentCognitoUser.username </script>
+        <script type="text/javascript"> 
+        var uuid = uuidv1()
+        document.getElementById("caseIdUuid").value = uuid; 
+        document.getElementById("cognitoSubNumber").value = SignInStatus.currentCognitoUser.username;
+        document.getElementById("accountAPI").action = "{URL_OF_REST}/accounts/" + SignInStatus.currentCognitoUser.username;
+        document.getElementById("caseAPI").action = "{URL_OF_REST}/cases/" + SignInStatus.currentCognitoUser.username + "/" + uuid;
+        document.getElementById("clinicCaseAPI").action = "{URL_OF_REST}/cases/" + SignInStatus.currentCognitoUser.username;
+        </script>
       </body>
     </html>
