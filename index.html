@@ -261,7 +261,7 @@
                       <h2 class="">Submit a new Case</h2>
                       <!-- TODO Check the script at the bottom of this page is populating the below "caseId" value -->
                       <input class="form-control" type="hidden" id="caseIdUuid" required name="caseId" value="">
-                      <input class="form-control" type="hidden" id="cognitoSubNumber" required name="cognitoSubNumber">
+                      <input class="form-control" type="hidden" id="cognitoSubNumber" required name="cognitoSubNumber" value="">
                       <input class="form-control" type="text" required name="presentedDate" placeholder="Date Case Presented">
                       <input class="form-control" type="text" name="exactDate" placeholder="Exact Date?">
                       <input class="form-control" type="text" required name="streetAddress" placeholder="Street Address (excl house number)">
@@ -282,7 +282,7 @@
                     <!-- Dynamo DB's puts are indempotent so to "edit" and entry, you simply write over the top with an identical "cognitoSubNumber" and "caseId" -->
                     <form class="form-editCase" method="POST" action="{URL_OF_REST}/cases/{cognitoSubNumber}/{caseId}">
                       <h2 class="">Edit a Case</h2>
-                      <input class="form-control" type="hidden" id="cognitoSubNumber" required name="cognitoSubNumber">
+                      <input class="form-control" type="hidden" id="cognitoSubNumber" required name="cognitoSubNumber" value="">
                       <input class="form-control" type="text" required name="caseId" placeholder="Case ID">
                       <input class="form-control" type="text" required name="presentedDate" placeholder="Date Case Presented">
                       <input class="form-control" type="text" required name="exactDate" placeholder="Exact Date?">
@@ -311,7 +311,7 @@
                     <!-- TODO make this call edit the cognito user account as well (will need lambda) -->
                     <form class="form-editAnAccount" method="POST" action="{URL_OF_REST}/accounts/{cognitoSubNumber}/">
                       <h2 class="">Edit an Account</h2>
-                      <input class="form-control" type="hidden"  id="cognitoSubNumber" required name="cognitoSubNumber">
+                      <input class="form-control" type="hidden"  id="cognitoSubNumber" required name="cognitoSubNumber" value="">
                       <input class="form-control" type="text" required name="postcode" placeholder="Postcode">
                       <input class="form-control" type="text" required name="address" placeholder="Clinic Address">
                       <input class="form-control" type="text" required name="cityTown" placeholder="City/own">
@@ -342,6 +342,6 @@
         <script src="http://wzrd.in/standalone/uuid%2Fv1@latest"></script>
         <script src="application.js"></script>
         <script src="ui.js"></script>
-        <script type="text/javascript"> document.getElementById("caseIdUuid").value = uuidv1(); document.getElementById("cognitoSubNumber").value = SignInStatus.cognitoSubNumber</script>
+        <script type="text/javascript"> document.getElementById("caseIdUuid").value = uuidv1(); document.getElementById("cognitoSubNumber").value = SignInStatus.currentCognitoUser.username </script>
       </body>
     </html>
