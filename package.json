@@ -1,0 +1,31 @@
+{
+  "name": "workspaces-fix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "dependencies": {
+    "async": "2.3.0",
+    "aws-sdk": "2.45.0",
+    "bootstrap": "^3.3.7",
+    "browserify": "^14.4.0",
+    "dateformat": "~2.0.0",
+    "express": "*",
+    "gm": "^1.23.0",
+    "insert-module-globals": "^7.0.1",
+    "lodash": "4.17.4",
+    "moment": "^2.18.1",
+    "morgan": "*",
+    "pad": "1.1.0",
+    "path": "0.12.7",
+    "play-sound": "1.1.1",
+    "uuid": "3.0.1",
+    "xml2js": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,10 @@
+{
+    "general":{
+        "region": "ap-southeast-2"
+    },
+    "cognito":{
+        "cognitoUserPoolId" : "ap-southeast-2_aUXb1nJ4Q",
+        "cognitoApplicationClientId" : "1jmfctkrv1frcqpmaa9b5ch7h7",
+        "cognitoIdentityPoolId" : "ap-southeast-2:05c94397-f169-4dff-a9ca-72757eff5592"
+    }
+}

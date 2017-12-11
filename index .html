@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Cognito Example Application - Sign in or register</title>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+
+
+<link rel="stylesheet" href="template.css" >
+
+</head>
+  <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Cognito Example Applciation</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="#" class="screen-navigation-link" data-targetScreen="screen-logged-in">Home</a></li>
+                <li><a href="#" class="screen-navigation-link" data-targetScreen="screen-insecure-content">Unsecured Page</a></li>
+                <li><a href="#" class="screen-navigation-link" data-targetScreen="screen-secure-content">Secured Page</a></li>
+                <li><a href="#" class="screen-navigation-link" data-targetScreen="screen-register">Register Page</a></li>
+                <li><a href="#" class="screen-navigation-link" data-targetScreen="screen-activation">Activate Page</a></li>
+                <li><a href="#" class="screen-navigation-link" data-targetScreen="screen-delete-user">Delete Cognito Users</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+    
+        <div class="screen active-screen" id="screen-login" data-loginscreen="true">
+            <div class="container">
+              <div class="starter-template">
+                <h1>Let's get you logged in</h1>
+                <p class="lead">This is an example application to help you<br>get started with Cognito.</p>
+              </div>
+  
+              <form class="form-signin">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <label for="signinEmail" class="sr-only">Email address</label>
+                <input type="email" id="signinEmail" class="form-control" placeholder="Email address" autofocus>
+                <label for="signinPassword" class="sr-only">Password</label>
+                <input type="password" id="signinPassword" class="form-control" placeholder="Password">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block signin-button" type="button">Sign in</button>
+                <div class="form-signin-signupsigninswitch">
+                        <a href="#" class="screen-navigation-link" data-targetScreen="screen-register">Don't have an account? click here to sign up</a>
+                    </div>
+              </form>
+            </div><!-- /.container -->
+          </div><!-- /.screen-login -->
+
+          <div class="screen hidden-screen" id="screen-register" data-registerscreen="true">
+            <div class="container">
+              <div class="starter-template">
+                <h1>Register your Clinic with Parvo Tracker</h1>
+                <p class="lead">Please supply all the details below, you will <br> recieve a confirmation email shortly after signing up.</p>
+              </div>
+              <form class="form-signin">
+                <h2 class="form-signin-heading">Parvo Tracker</h2>
+               <input type="text" id="clinicName" class="form-control margin-below" placeholder="Clinic Name">
+               <!-- TODO add this preffered_username, only works after user is confirmed 
+                <input type="text" id="preferred_username" class="form-control margin-below" placeholder="Preferred Username"> -->
+                <input type="email" id="registerEmail" class="form-control" placeholder="Email address (Use this to login)" autofocus>
+<!--                <input type="email" id="confirm_registerEmail" class="form-control margin-below" placeholder="Confirm Email address"> -->
+                <input type="text" id="phoneNumber" class="form-control" placeholder="Phone Number">
+                <input type="text" id="streetAddress" class="form-control" placeholder="Street Address">
+                <input type="text" id="cityTown" class="form-control" placeholder="City / Town">
+                <input type="text" id="postCode" class="form-control margin-below" placeholder="Post Cost">
+                <input type="password" id="registerPassword" class="form-control" placeholder="Password">
+<!--                <input type="password" id="confirm_registerPassword" class="form-control margin-below" placeholder="Confirm Password"> -->
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block register-button" type="button">Register</button>
+                <div class="form-signin-signupsigninswitch">
+                        <a href="#" class="screen-navigation-link" id="link-registration-goToSignIn" data-targetScreen="screen-login">Already have an account? click here to sign in</a>
+                    </div>
+              </form>
+            </div><!-- /.container -->
+       </div><!-- /.screen-register -->
+
+          <div class="screen hidden-screen" id="screen-account-created">
+            <div class="container">
+              <div class="starter-template">
+                <h1>Great! Your account has been created.</h1>
+                <p class="lead">However you still need to activate your account<br>please check your email and find the activation code sent to you<br>then click "activate" below.</p>
+              </div>
+              <form class="form-account-created">
+                <a href="#" class="btn btn-lg btn-primary btn-block screen-navigation-link" data-targetScreen="screen-activation">Activate Account</a>
+              </form>
+            </div><!-- /.container -->
+          </div><!-- /.screen-register -->
+
+          <div class="screen hidden-screen" id="screen-activation">
+            <div class="container">
+                <div class="starter-template">
+                  <h1>Let's activate your account</h1>
+                  <p class="lead">Once a Cognito Account is created the user is sent via email or SMS Text Message a registration validation code and a link to follow.<br>Please click the link you were sent or enter the activation code in the field below to activate your account.</p>
+                </div>
+                <form class="form-signin">
+                    <h2 class="form-signin-heading">Activation code</h2>
+                    <label for="inputUsername" class="sr-only">Activation Code</label>
+                    <input type="email" id="inputUsername" class="form-control" placeholder="Email address" required autofocus>
+                  <label for="inputActivationCode" class="sr-only">Activation Code</label>
+                  <input type="email" id="inputActivationCode" class="form-control" placeholder="12345678" required autofocus>
+                  <button id="activate-button" class="btn btn-lg btn-primary btn-block" type="button">Activate</button>
+                   <div class="form-activation-resendActivationCode">
+                          <a href="#" class="form-activation-resendActivationCode-link screen-navigation-link" data-targetScreen="screen-resendActivationCode">Didn't receive an activation code? <br>Click here to send another.</a>
+                      </div>
+                </form>
+              </div><!-- /.container -->
+        </div><!-- /.screen-activation -->
+
+        <div class="screen hidden-screen" id="screen-delete-user">
+          <div class="container">
+              <div class="starter-template">
+                <h1>Delete User</h1>
+                <p class="lead">You need to use regular AWS api keys to delete cognito users,<br>please enter them below for this tool to work.</p>
+              </div>
+              <form class="form-signin">
+                <h2 class="form-signin-heading">Delete User ID</h2>
+                <label for="inputApiKey" class="sr-only">AWS API Key</label>
+                <input type="email" id="inputApiKey" class="form-control" placeholder="AWS API Key" required autofocus>
+                <label for="inputApiSecret" class="sr-only">AWS Secret Key</label>
+                <input type="password" id="inputApiSecret" class="form-control" placeholder="AWS Secret Key" required autofocus>
+                <label for="inputUserId" class="sr-only">User Id</label>
+                <input type="email" id="inputUserId" class="form-control" placeholder="00000000-0000-0000-0000-000000000000" required autofocus>
+                <button id="delete-user-button" class="btn btn-lg btn-primary btn-block" type="button">Delete User</button>
+              </form>
+            </div><!-- /.container -->
+      </div><!-- /.screen-delete-user -->
+
+      <div class="screen hidden-screen" id="screen-user-deleted">
+        <div class="container">
+            <div class="starter-template">
+              <h1>That user has been deleted!</h1>
+              <p class="lead">Sleep easy knowing they are no longer a part of the 'system'.</p>
+            </div>
+            <form class="form-signin">
+              <a href="#" class="btn btn-lg btn-primary btn-block screen-navigation-link"  data-targetScreen="screen-delete-user">Delete another user</a>
+            </form>
+          </div><!-- /.container -->
+    </div><!-- /.screen-user-deleted -->
+
+          <div class="screen hidden-screen" id="screen-activated">
+            <div class="container">
+                <div class="starter-template">
+                  <h1>Congratulations, your account is active!</h1>
+                  <p class="lead">Your account has been activated successfully using the code provided.<br>You can now login to your account.</p>
+                </div>
+                <form class="form-signin">
+                  <a href="#" class="btn btn-lg btn-primary btn-block screen-navigation-link" id="link-activated-returnToLogin" data-targetScreen="screen-login">Back to Sign-in Page</a>
+                </form>
+              </div><!-- /.container -->
+        </div><!-- /.screen-activated -->
+
+        <div class="screen hidden-screen" id="screen-logged-in" data-protected="true" data-nosession-screen="screen-login">
+          <div class="container">
+              <div class="starter-template">
+                <h1>Welcome, you're all logged in!</h1>
+                <p class="lead">Your all logged in, this could be because you just logged in or<br>your previous session is still valid.</p>
+              </div>
+              <form class="form-signin">
+                <a href="#" class="btn btn-lg btn-primary btn-block screen-navigation-link" id="link-activated-returnToLogin" data-targetScreen="screen-secure-content">Take me to the Secure Content</a>
+                <a href="#" class="btn btn-lg btn-primary btn-block signout-button" id="link-activated-returnToLogin">Logout</a>
+              </form>
+            </div><!-- /.container -->
+        </div><!-- /.screen-logged-in -->
+          
+          <div class="screen hidden-screen" id="screen-activation-resent">
+              <div class="container">
+                  <div class="starter-template">
+                    <h1>Don't worry, your activation code has been reset!</h1>
+                    <p class="lead">Your activation code has been resent to your email address.</p>
+                  </div>
+                  <form class="form-signin">
+                    <a href="#" class="btn btn-lg btn-primary btn-block screen-navigation-link"  id="link-activationResent-returnToActivation" data-targetScreen="screen-activation">Back to Activation</a>
+                  </form>
+                </div><!-- /.container -->
+          </div><!-- /.screen-activation-resent -->
+          
+          <div class="screen hidden-screen" id="screen-insecure-content">
+            <div class="container">
+                <div class="starter-template">
+                  <h1>Welcome to your insecure content!</h1>
+                  <p class="lead">The idea is you should always be able to get to this page (and stay here) even without a valid cognito session.<br>So if you're here congrats!</p>
+                </div>
+              </div><!-- /.container -->
+        </div><!-- /.screen-insecure-content -->
+
+        <div class="screen hidden-screen" id="screen-nosession">
+          <div class="container">
+              <div class="starter-template">
+                <h1>Sorry, that content is protected.</h1>
+                <p class="lead">The screen you tried to access requires an active session<br>So why not try logging in?</p>
+              </div>
+              <form class="form-signin">
+                <a href="#" class="btn btn-lg btn-primary btn-block screen-navigation-link" data-targetScreen="screen-login">Back to Login</a>
+              </form>
+            </div><!-- /.container -->
+      </div><!-- /.screen-insecure-content -->
+          
+          <div class="screen hidden-screen" id="screen-secure-content" data-protected="true" data-nosession-screen="screen-nosession">
+              <div class="container">
+                  <div class="starter-template">
+                    <h1>Welcome to your secure content!</h1>
+                    <p class="lead">The idea is you shouldn't be able to get to this page (or at least stay here) without a valid cognito session.<br>So if you're here congrats!</p>
+
+                    <form class="form-postNewCase" method="POST" action="{URL_OF_REST}/cases/">
+                      <h2 class="">Submit a new Case</h2>
+                      <input class="form-control" type="text" required name="presentedDate" placeholder="Date Case Presented">
+                      <input class="form-control" type="text" required name="exactDate" placeholder="Exact Date?">
+                      <input class="form-control" type="text" required name="streetAddress" placeholder="Street Address (excl house number)">
+                      <input class="form-control" type="text" required name="species" placeholder="Species">
+                      <input class="form-control" type="text" required name="age" placeholder="Age">
+                      <input class="form-control" type="text" required name="clinicalSigns" placeholder="Clinical Signs">
+                      <input class="form-control" type="text" required name="vaxDate" placeholder="Vaccination Date">
+                      <input class="form-control" type="text" required name="vaxBrand" placeholder="Vaccination Brand">
+                      <input class="form-control" type="text" required name="methodDiag" placeholder="Method of Diagnosis">
+                      <input class="form-control" type="text" required name="caseOutcome" placeholder="Case Outcome">
+                      <input class="form-control" type="text" required name="otherInfo" placeholder="Other Information">
+                      <label class="checkbox"></label>
+                      <button class="btn btn-lg btn-primary btn-block" type="submit">Submit a new Case</button>
+                    </form>
+
+                    <form class="form-editCase" method="POST" action="{URL_OF_REST}/cases/{cognitoSubNumber}">
+                      <h2 class="">Edit a Case</h2>
+                      <input class="form-control" type="text" required name="presentedDate" placeholder="Date Case Presented">
+                      <input class="form-control" type="text" required name="exactDate" placeholder="Exact Date?">
+                      <input class="form-control" type="text" required name="streetAddress" placeholder="Street Address (excl house number)">
+                      <input class="form-control" type="text" required name="species" placeholder="Species">
+                      <input class="form-control" type="text" required name="age" placeholder="Age">
+                      <input class="form-control" type="text" required name="clinicalSigns" placeholder="Clinical Signs">
+                      <input class="form-control" type="text" required name="vaxDate" placeholder="Vaccination Date">
+                      <input class="form-control" type="text" required name="vaxBrand" placeholder="Vaccination Brand">
+                      <input class="form-control" type="text" required name="methodDiag" placeholder="Method of Diagnosis">
+                      <input class="form-control" type="text" required name="caseOutcome" placeholder="Case Outcome">
+                      <input class="form-control" type="text" required name="otherInfo" placeholder="Other Information">
+                      <label class="checkbox"></label>
+                      <button class="btn btn-lg btn-primary btn-block" type="submit">Edit a Case</button>
+                    </form>
+
+                    <form class="form-editAnAccount" method="POST" action="{URL_OF_REST}/accounts/{cognitoSubNumber}/">
+                      <h2 class="">Edit an Account</h2>
+                      <input class="form-control" type="text" required name="postcode" placeholder="Postcode">
+                      <input class="form-control" type="text" required name="address" placeholder="Clinic Address">
+                      <input class="form-control" type="text" required name="cityTown" placeholder="City/own">
+                      <input class="form-control" type="text" required name="clinicName" placeholder="Clinic Name">
+                      <input class="form-control" type="text" required name="phoneNumber" placeholder="Phone Number">
+                      <!-- TODO Add preferred alias -->
+                      <label class="checkbox"></label>
+                      <button class="btn btn-lg btn-primary btn-block" type="submit">Edit an Account</button>
+                    </form>
+
+                    <!-- TODO add DELETE-account,Delete-case.,.. -->
+
+
+                  </div>
+                </div><!-- /.container -->
+          </div><!-- /.screen-secure-content -->
+
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.18.min.js"></script>
+        <script src="js/aws-cognito-sdk.min.js"></script>
+        <script src="js/amazon-cognito-identity.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="application.js"></script>
+        <script src="ui.js"></script>
+      </body>
+    </html>
